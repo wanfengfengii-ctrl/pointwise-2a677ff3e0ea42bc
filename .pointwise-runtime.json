@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "cli",
+  "setup": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "cycle_count.py",
+      "verify_cycle_count.py",
+      "demo_cycle_count.py",
+      "bench_cycle_count.py"
+    ],
+    [
+      "python3",
+      "-c",
+      "from cycle_count import CycleCount; c = CycleCount([['a','b']], [['b','c']], [['c','a']]); assert [c.add('R','a','b',2), c.add('S','b','c',3), c.add('T','c','a',4)] == [0,0,24]; assert c.add('S','b','c',-1) == 16; print('setup ok')"
+    ]
+  ],
+  "verify": ["python3", "verify_cycle_count.py"],
+  "demo": ["python3", "demo_cycle_count.py"]
+}
